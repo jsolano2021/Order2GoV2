@@ -1,0 +1,88 @@
+﻿@model Order2GoV2.Models.ReporteParameter
+
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<h1 class="alert alert-info" role="alert">Reporte de Ventas</h1>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="GetReporteVentas" class="form-inline">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-2 mr-sm-2">
+                <label asp-for="FechaInicio" class="control-label"></label>
+                <input asp-for="FechaInicio" class="form-control" type="date" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2 mr-sm-2">
+                <label asp-for="FechaFin" class="control-label"></label>
+                <input asp-for="FechaFin" class="form-control" type="date" />
+                <span asp-validation-for="FechaFin" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2 mr-sm-2">
+                <label asp-for="Comercio" class="control-label"></label>
+                <select asp-for="Comercio" class="form-control" asp-items="ViewBag.Comercio"></select>
+                <span asp-validation-for="Comercio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Consultar" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.ListaDatos != null)
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>SubTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DetalleVenta item in ViewBag.ListaDatos)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductoNavigation.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VentaNavigation.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subtotal)
+                    </td>
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+
+    <div class="alert alert-warning" role="alert">
+        Total de Ventas :  <strong>₡ @(Convert.ToDouble(ViewBag.Total).ToString("N2"))</strong>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        <strong>Alerta!</strong> Sin Datos
+    </div>
+}
+

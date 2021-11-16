@@ -1,0 +1,35 @@
+﻿@model Order2GoV2.Models.Comercio
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Detalles";
+}
+
+<h1 class="alert alert-info" role="alert">Detalle del Comercio</h1>
+
+<div> 
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeroTelefono)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeroTelefono)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdComercio" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index">Volver</a>
+</div>

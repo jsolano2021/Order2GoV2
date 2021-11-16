@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Inicio";
+}
+
+
+<h1 class="text-center">Bienvenido @ViewData["Usuario"]</h1>
+
+<form asp-action="Logout">
+    <input type="submit" value="Logout" class="btn btn-outline-danger" />
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
